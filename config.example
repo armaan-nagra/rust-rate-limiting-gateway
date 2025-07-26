@@ -1,0 +1,28 @@
+# API Rate Limiter Configuration
+# Set these as environment variables or copy to a .env file
+
+TARGET_API_URL=https://api.openai.com/v1
+TARGET_API_KEY=your-api-key-here
+RATE_LIMIT=60
+
+# Examples for different APIs:
+# 
+# OpenAI:
+# TARGET_API_URL=https://api.openai.com/v1
+# TARGET_API_KEY=sk-...
+# RATE_LIMIT=60
+#
+# Stripe:
+# TARGET_API_URL=https://api.stripe.com/v1
+# TARGET_API_KEY=sk_test_...
+# RATE_LIMIT=100
+#
+# GitHub:
+# TARGET_API_URL=https://api.github.com
+# TARGET_API_KEY=ghp_...
+# RATE_LIMIT=5000
+#
+# Custom API:
+# TARGET_API_URL=https://my-api.example.com
+# TARGET_API_KEY=optional-if-your-api-needs-it
+# RATE_LIMIT=30 
