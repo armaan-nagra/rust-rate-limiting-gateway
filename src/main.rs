@@ -1,5 +1,6 @@
 use axum::{
     routing::{get, post},
+    extract::State,
     Router, Json
 };
 use serde::Serialize;
@@ -10,6 +11,8 @@ use uuid::Uuid;
 async fn main() {
     // Logger
     tracing_subscriber::fmt::init();
+
+    let redit_client = Client::open("redis://127.0.0.1").unwrap();
 
     // Build routes
     let app = Router::new()
@@ -33,9 +36,10 @@ struct TokenResponse {
     token: String,
 }
 
-async fn register() -> Json<TokenResponse> {
+async fn register(State(client): State<RedisState>) -> Json<TokenResponse> {
     let token = Uuid::new_v4().to_string();
-    // For now just return it. We'll store it in Redis later.
+    let mut conn = client.get_async_connection().await.unwrap();
+    let _: () = conn.set_ex(token.clone(), "valid", 3600).await.unwrap(); // store for 1 hour
     Json(TokenResponse { token })
 }
 
