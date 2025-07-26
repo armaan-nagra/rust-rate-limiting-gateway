@@ -21,3 +21,6 @@ Thumbs.db
 
 # Generated files
 resource_usage.csv
+server.log
+latency_test.lua*
+throughput_test.lua*
