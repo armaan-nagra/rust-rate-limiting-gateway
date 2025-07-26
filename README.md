@@ -109,8 +109,6 @@ for i in range(1000):  # This would cost $2+ with direct API (adds up fast!)
 
 - **Streaming proxy**: Constant memory regardless of payload size
 - **Redis atomic operations**: Race-condition free rate limiting  
-- **Token-based auth**: Stateless multi-tenant design
-- **Async I/O**: Non-blocking request pipeline
 
 ## 💡 Production Benefits
 
