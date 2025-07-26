@@ -1,4 +1,4 @@
-# 🚦 Universal API Rate Limiter
+# 🚦 High Performance API Rate Limiting Proxy
 
 A **self-imposed rate limiting proxy** that helps you control your own API usage and costs. Perfect for developers who want to set stricter limits than APIs provide, protect against accidental overuse, and keep API keys secure.
 
