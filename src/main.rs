@@ -125,14 +125,15 @@ async fn proxy_request(
 ) -> Result<axum::response::Response, StatusCode> {
     let (_, http_client, config) = app_state.as_ref();
     
-    // Build the target URL
+    // Build the target URL - remove /api prefix
     let path = uri.path();
+    let target_path = path.strip_prefix("/api").unwrap_or(path);
     let query = if query_params.is_empty() {
         String::new()
     } else {
         format!("?{}", serde_urlencoded::to_string(&query_params).unwrap())
     };
-    let target_url = format!("{}{}{}", config.target_base_url, path, query);
+    let target_url = format!("{}{}{}", config.target_base_url, target_path, query);
     
     // Convert axum body to bytes
     let body_bytes = match axum::body::to_bytes(body, usize::MAX).await {
