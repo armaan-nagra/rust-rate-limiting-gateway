@@ -1,11 +1,3 @@
-//! High-performance API rate limiting proxy
-//! 
-//! A Rust-based proxy that adds ~1ms latency while providing:
-//! - Redis-backed distributed rate limiting
-//! - API key protection and isolation  
-//! - Streaming request/response handling
-//! - Horizontal scaling support
-
 mod auth;
 mod config;
 mod middleware;
@@ -50,7 +42,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-/// Build the application router with all routes and middleware
 fn build_router(app_state: AppState) -> Router {
     let public_routes = Router::new()
         .route("/register", post(register));
