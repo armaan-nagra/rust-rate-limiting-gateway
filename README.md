@@ -9,7 +9,7 @@ A **ultra-low latency rate limiting proxy** built in Rust for cost-sensitive API
 - 🎯 **Self-impose stricter limits** than API defaults
 - 🔒 **Secure API keys** (never exposed to frontend)
 
-## ⚡ Performance-First Design
+## ⚡ Design
 
 **Tech Stack**: Rust + Axum + Redis (chosen specifically for latency and high performance >10k req/sec)
 
@@ -83,7 +83,7 @@ def get_completion_safely(prompt):
     )
     
     if response.status_code == 429:
-        return "Rate limited - saved you money! 💰"
+        return "Rate limited, saved you money! 💰"
     
     return response.json()["choices"][0]["message"]["content"]
 
