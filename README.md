@@ -1,6 +1,6 @@
 # 🚦 High-Performance API Rate Limiting Gateway
 
-A **ultra-low latency rate limiting proxy** built in Rust for cost-sensitive API applications. Add only **~1ms overhead** while preventing budget overruns and securing API keys.
+A **ultra-low latency rate limiting gateway/proxy** built in Rust for cost-sensitive API applications. Add only **~1ms overhead** while preventing budget overruns and securing API keys.
 
 ## 🎯 Why This Matters
 
