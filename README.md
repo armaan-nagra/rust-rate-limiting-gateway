@@ -121,7 +121,7 @@ for i in range(1000):  # This would cost $2+ with direct API (adds up fast!)
 
 ## 🤝 Contributing
 
-This is a learning project! Feel free to suggest improvements, submit PRs, or open issues. All contributions are welcome!
+This is a learning project and an excuse for me to learn rust! Feel free to suggest improvements, submit PRs, or open issues. All contributions are welcome!
 
 ## 📄 License
 
