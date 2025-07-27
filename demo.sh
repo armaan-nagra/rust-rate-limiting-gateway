@@ -10,6 +10,7 @@ if ! curl -s http://127.0.0.1:3000/register > /dev/null; then
     echo "💡 Start it with:"
     echo "   export TARGET_API_URL=\"https://httpbin.org\""
     echo "   export RATE_LIMIT=\"5\""
+    echo "   # For real APIs, also set: export TARGET_API_KEY=\"your-key\""
     echo "   cargo run"
     exit 1
 fi
@@ -80,7 +81,3 @@ echo "   1. Set TARGET_API_URL to your actual API (OpenAI, Stripe, etc.)"
 echo "   2. Set TARGET_API_KEY to your real API key"
 echo "   3. Change your app to call http://127.0.0.1:3000/api/* instead"
 echo ""
-echo "🔒 Benefits:"
-echo "   • Your frontend never sees the real API key"
-echo "   • You can't accidentally exceed rate limits"
-echo "   • Monitor and control API usage per user" 
