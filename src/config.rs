@@ -1,5 +1,3 @@
-//! Configuration management for the rate limiter proxy
-
 #[derive(Clone, Debug)]
 pub struct ProxyConfig {
     pub target_base_url: String,
@@ -8,7 +6,6 @@ pub struct ProxyConfig {
 }
 
 impl ProxyConfig {
-    /// Load configuration from environment variables with validation
     pub fn from_env() -> Result<Self, ConfigError> {
         let target_base_url = std::env::var("TARGET_API_URL")
             .unwrap_or_else(|_| "https://api.example.com".to_string());
@@ -20,7 +17,6 @@ impl ProxyConfig {
             .parse::<u32>()
             .map_err(|_| ConfigError::InvalidRateLimit)?;
 
-        // Validate URL format
         if !target_base_url.starts_with("http") {
             return Err(ConfigError::InvalidUrl);
         }

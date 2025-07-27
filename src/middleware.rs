@@ -1,5 +1,3 @@
-//! Rate limiting middleware using Redis for distributed state
-
 use axum::{
     extract::State,
     http::{Request, StatusCode},
@@ -14,7 +12,7 @@ use crate::config::ProxyConfig;
 
 pub type AppState = Arc<(Arc<RedisClient>, reqwest::Client, ProxyConfig)>;
 
-/// Rate limiting middleware that enforces per-token limits
+
 pub async fn rate_limiter(
     State(app_state): State<AppState>,
     req: Request<Body>,
@@ -46,7 +44,6 @@ pub async fn rate_limiter(
     }
 }
 
-/// Extract Bearer token from Authorization header
 fn extract_bearer_token(req: &Request<Body>) -> String {
     req.headers()
         .get("Authorization")
@@ -57,7 +54,6 @@ fn extract_bearer_token(req: &Request<Body>) -> String {
         .to_string()
 }
 
-/// Check if request is within rate limit using Redis atomic operations
 async fn check_rate_limit(
     redis_client: &RedisClient,
     token: &str,
@@ -68,7 +64,6 @@ async fn check_rate_limit(
         .map_err(RateLimitError::RedisConnection)?;
     
     let key = format!("ratelimit:{}", token);
-    
     // Atomic increment and expire
     let count: i32 = conn
         .incr(&key, 1)

@@ -30,24 +30,18 @@ use crate::{
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // Initialize logging
     tracing_subscriber::fmt::init();
 
-    // Load and validate configuration
     let config = ProxyConfig::from_env()?;
     config.display_summary();
 
-    // Initialize external dependencies
     let redis_client = Arc::new(RedisClient::open("redis://127.0.0.1")?);
     let http_client = reqwest::Client::new();
 
-    // Create shared application state
     let app_state = Arc::new((redis_client, http_client, config));
 
-    // Build application router
     let app = build_router(app_state);
 
-    // Start server
     let listener = TcpListener::bind("127.0.0.1:3000").await?;
     println!("Listening on http://127.0.0.1:3000");
 
@@ -58,11 +52,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
 /// Build the application router with all routes and middleware
 fn build_router(app_state: AppState) -> Router {
-    // Public routes (no rate limiting)
     let public_routes = Router::new()
         .route("/register", post(register));
 
-    // Protected routes (with rate limiting)
     let protected_routes = Router::new()
         .route("/api/*path", any(proxy_request))
         .layer(axum_middleware::from_fn_with_state(
@@ -70,7 +62,6 @@ fn build_router(app_state: AppState) -> Router {
             rate_limiter,
         ));
 
-    // Combine all routes
     Router::new()
         .merge(public_routes)
         .merge(protected_routes)
