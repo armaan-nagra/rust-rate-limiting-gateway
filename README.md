@@ -15,9 +15,7 @@ A **ultra-low latency rate limiting gateway/proxy** built in Rust for cost-sensi
 
 - **~1ms proxy overhead** (vs 10-50ms typical for other languages)
 - **8MB memory footprint** (extremely efficient)
-- **Zero-cost abstractions** + no garbage collection
-- **Async/await architecture** for high concurrency
-- **Stateless design** enabling horizontal scaling
+=- **Async/await architecture** for high concurrency
 
 
 ## 🚀 Quick Start
@@ -115,7 +113,6 @@ for i in range(1000):  # This would cost $2+ with direct API (adds up fast!)
 - **Risk Management**: Never exceed API budgets
 - **Security**: API keys isolated from client applications  
 - **Observability**: Real-time usage monitoring via Redis
-- **Scalability**: Deploy multiple instances behind load balancer
 - **Performance**: Sub-millisecond proxy latency impact
 
 
